@@ -6,26 +6,12 @@ services:
     build: .
     container_name: calendar-mcp
     restart: unless-stopped
-    
-    # Environment configuration via .env file
-    env_file: .env
 
     # OAuth credentials and token storage
     volumes:
       - ./gcp-oauth.keys.json:/app/gcp-oauth.keys.json:ro
       - calendar-tokens:/home/nodejs/.config/google-calendar-mcp
-    
-    # Expose ports for HTTP mode and OAuth authentication
-    ports:
-      - "3000:3000"  # HTTP mode MCP server
-      - "3500:3500"  # OAuth authentication
-      - "3501:3501"
-      - "3502:3502"
-      - "3503:3503"
-      - "3504:3504"
-      - "3505:3505"
-    
-    
+
     # Resource limits for production stability
     deploy:
       resources:
